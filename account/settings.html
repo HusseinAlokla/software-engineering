@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings Page</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .settings-container {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .settings-header {
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      .settings-header h1 {
+        text-align: center;
+      }
+
+      .settings-section h2 {
+        color: #333;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="file"] {
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+      }
+
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: blue;
+        color: white;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: darkblue;
+      }
+
+      .back-button {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: blue;
+        text-decoration: none;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="file"],
+      select {
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        width: 100%;
+      }
+      .dark-theme {
+        background-color: #333;
+        color: white;
+      }
+      .light-theme {
+        background-color: #fff;
+        color: black;
+      }
+      #profile-pic-preview {
+        position: fixed; /* Make the image fixed */
+        top: 10px; /* Adjust the top distance as needed */
+        right: 105px; /* Adjust the right distance as needed */
+        width: 80px; /* Set the desired width */
+        height: 80px; /* Set the desired height */
+        border-radius: 50%; /* Make the image round (for a circular profile picture) */
+        border: 2px solid #333; /* Add a border around the image */
+        object-fit: cover; /* Crop and scale the image to fit the container */
+        z-index: 999; /* Ensure it's on top of other content */
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      function previewImage() {
+        const fileInput = document.getElementById("profile-pic");
+        const preview = document.getElementById("profile-pic-preview");
+
+        if (fileInput.files && fileInput.files[0]) {
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            // Set the 'src' attribute of the image to the uploaded image's data URL
+            preview.src = e.target.result;
+            preview.style.display = "block"; // Display the image
+          };
+
+          reader.readAsDataURL(fileInput.files[0]);
+        }
+      }
+    </script>
+
+    <div class="settings-container">
+      <header class="settings-header">
+        <a href="Myacc.php" class="back-button">Back to Profile</a>
+        <h1>Settings</h1>
+      </header>
+
+      <section class="settings-section">
+        <h2>Personal Information</h2>
+        <form>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" />
+
+          <label for="profile-pic">Profile Picture:</label>
+          <input
+            type="file"
+            id="profile-pic"
+            name="profile-pic"
+            accept="image/*"
+            onchange="previewImage()"
+          />
+          <img id="profile-pic-preview" src="" alt="upload you pic" />
+
+          <button type="submit">Save Changes</button>
+        </form>
+      </section>
+
+      <section class="settings-section">
+        <h2>Password Change</h2>
+        <form>
+          <label for="current-password">Current Password:</label>
+          <input
+            type="password"
+            id="current-password"
+            name="current-password"
+          />
+
+          <label for="new-password">New Password:</label>
+          <input type="password" id="new-password" name="new-password" />
+
+          <label for="confirm-password">Confirm New Password:</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+          />
+
+          <button type="submit">Change Password</button>
+        </form>
+        <h2>Account Preferences</h2>
+        <form>
+          <label for="theme-select">Theme Selection:</label>
+          <select id="theme-select" name="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+          <button type="submit">Save Changes</button>
+        </form>
+      </section>
+
+      <div class="container mt-4">
+        <h2>Notification Settings</h2>
+
+        <form id="notificationForm">
+          <!-- Email and Push Notifications -->
+          <h4>Email and Push Notifications</h4>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="emailNotifications"
+              name="emailNotifications"
+            />
+            <label class="form-check-label" for="emailNotifications"
+              >Email Notifications</label
+            >
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="pushNotifications"
+              name="pushNotifications"
+            />
+            <label class="form-check-label" for="pushNotifications"
+              >Push Notifications</label
+            >
+          </div>
+
+          <!-- Frequency of Notifications -->
+          <h4>Frequency of Notifications</h4>
+          <label for="notificationFrequency">Select Frequency:</label>
+          <select
+            id="notificationFrequency"
+            name="notificationFrequency"
+            class="form-select"
+          >
+            <option value="immediate">Immediate</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+          </select>
+
+          <button type="submit" class="btn btn-primary mt-3">
+            Save Changes
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Elements
+        const emailCheckbox = document.getElementById("emailNotifications");
+        const pushCheckbox = document.getElementById("pushNotifications");
+        const frequencySelect = document.getElementById(
+          "notificationFrequency"
+        );
+
+        // Event listeners
+        emailCheckbox.addEventListener("change", handleNotificationChange);
+        pushCheckbox.addEventListener("change", handleNotificationChange);
+        frequencySelect.addEventListener("change", handleFrequencyChange);
+
+        function handleNotificationChange() {
+          const emailEnabled = emailCheckbox.checked;
+          const pushEnabled = pushCheckbox.checked;
+          console.log(
+            `Email Notifications: ${emailEnabled}, Push Notifications: ${pushEnabled}`
+          );
+          // Implement saving changes or additional logic here
+        }
+
+        function handleFrequencyChange() {
+          const frequency = frequencySelect.value;
+          console.log(`Notification Frequency: ${frequency}`);
+          // Implement saving changes or additional logic here
+        }
+      });
+    </script>
+  </body>
+  <script>
+    document
+      .getElementById("theme-select")
+      .addEventListener("change", function () {
+        var selectedTheme = this.value;
+        if (selectedTheme === "dark") {
+          document.body.classList.add("dark-theme");
+          document.body.classList.remove("light-theme");
+        } else {
+          document.body.classList.add("light-theme");
+          document.body.classList.remove("dark-theme");
+        }
+      });
+  </script>
+</html>

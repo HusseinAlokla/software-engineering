@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Options</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .container {
+        margin-top: 50px;
+      }
+
+      h2 {
+        color: #007bff;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .card {
+        border: none;
+        border-radius: 10px;
+        transition: transform 0.2s;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
+
+      .payment-image {
+        width: 100%;
+        height: 290px; /* Set a fixed height for consistency */
+        object-fit: cover; /* Maintain aspect ratio while covering the container */
+        border-radius: 10px 10px 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Select a Payment Option</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card shadow">
+            <img
+              src="./assets/img/smart-contact-based-card.jpg"
+              alt="Smart Card"
+              class="payment-image"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Smart Card</h5>
+              <p class="card-text center">Pay with your Smart card securely.</p>
+              <a href="SmartCard.php" class="btn btn-primary btn-block"
+                >Pay with Smart Card</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow">
+            <img
+              src="./assets/img/money.jpg"
+              alt="Cash"
+              class="payment-image"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Cash</h5>
+              <p class="card-text">
+                Use any toll booth to pay if you are a first-time user.
+              </p>
+              <a href="Cash.html" class="btn btn-primary btn-block"
+                >Pay with Cash</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (Popper.js, jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
